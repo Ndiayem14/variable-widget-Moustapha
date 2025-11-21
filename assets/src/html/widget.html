@@ -1,30 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Metadata -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Title</title>
-
+  <title>Understanding Variables</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap"
     rel="stylesheet">
-
-  <!-- CSS -->
+<!-- CSS -->
   <link rel="stylesheet" href="../css/widget-page.css">
-</head>
+  <style>
+    .variable-widget {
+      background: white;
+      border: 2px solid #3498db;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 20px 0;
+    }
 
+    .variable-visual {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .storage-box {
+      background: #fff8dc;
+      border: 3px dashed #ffa500;
+      padding: 25px;
+      border-radius: 10px;
+      min-width: 250px;
+      text-align: center;
+    }
+
+    .box-label {
+      font-weight: 600;
+      color: #d68910;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .box-value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #e74c3c;
+      min-height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .widget-controls {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .widget-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px;
+      border: 2px solid #3498db;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .widget-button {
+      padding: 12px 20px;
+      font-size: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .btn-store {
+      background: #3498db;
+      color: white;
+    }
+
+    .btn-store:hover {
+      background: #2980b9;
+    }
+
+    .btn-clear {
+      background: #95a5a6;
+      color: white;
+    }
+
+    .btn-clear:hover {
+      background: #7f8c8d;
+    }
+
+    .code-display {
+      background: #2c3e50;
+      color: #2ecc71;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      margin: 15px 0;
+      font-size: 16px;
+    }
+
+    .tip-box {
+      background: #d4edda;
+      border-left: 4px solid #28a745;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
 <body>
+  <div class="column column-md">
+    <section>
+      <div class="text">
+        <h1>What is a Variable?</h1>
+        <p>A <b>variable</b> is like a labeled storage box. You can put information inside it, check what's in it, or change what's stored anytime you want!</p>
+      </div>
+      <button class="button-semantic button-primary button-continue">
+        <span class="button-text">Continue</span>
+        <svg class="button-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z" fill="white" />
+        </svg>
+      </button>
+    </section>
+    <section>
+      <div class="text">
+        <p>The box has a <b>name</b> (so you know which box it is), and it holds a <b>value</b> (what's inside the box).</p>
+        <p>The cool part? The name stays the same, but you can change the value whenever you want!</p>
+      </div>
+      <button class="button-semantic button-primary button-continue">
+        <span class="button-text">Continue</span>
+        <svg class="button-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z" fill="white" />
+        </svg>
+      </button>
+    </section>
+    <section>
+      <div class="text">
+        <h1>Try It Yourself!</h1>
+        <p>Let's create a variable called <b>favoriteFood</b> and store your favorite food in it.</p>
+      </div>
+      <div class="widget variable-widget">
+        <div class="variable-visual">
+          <div class="storage-box">
+            <div class="box-label">📦 Variable: "favoriteFood"</div>
+            <div class="box-value" id="displayValue">(empty)</div>
+          </div>
+        </div>
+        <div class="widget-controls">
+          <input 
+            type="text" 
+            id="userInput" 
+            class="widget-input"
+            placeholder="Type your favorite food..."
+            aria-label="Enter your favorite food"
+          >
+          <button class="widget-button btn-store" onclick="storeValue()">Store Value</button>
+          <button class="widget-button btn-clear" onclick="clearValue()">Clear Box</button>
+        </div>
+        <div class="code-display" id="codeDisplay">
+          favoriteFood = (empty)
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Try this:</strong> Type different foods and click "Store Value" each time. Watch how the variable keeps the same name but stores different values!
+        </div>
+      </div>
+
+      <button class="button-semantic button-primary button-continue">
+        <span class="button-text">Continue</span>
+        <svg class="button-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z" fill="white" />
+        </svg>
+      </button>
+    </section>
+
+    <section>
+      <div class="text">
+        <h1>Why Are Variables Useful?</h1>
+        <p>Variables let programs remember information and use it later. Imagine a game that needs to remember your score—it uses a variable!</p>
+        <p>Without variables, computers couldn't remember anything. That means no saved games, no usernames, no shopping carts. Variables make programs powerful!</p>
+      </div>
+    </section>
+  </div>
   <script type="module">
     import { WidgetPage } from "../js/WidgetPage.js";
+    // Variable storage functions
+    let favoriteFood = "";
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const widgetPage = new WidgetPage("widget-page-template", document.body);
+    window.storeValue = function() {
+      const input = document.getElementById('userInput').value;
+      
+      if (input.trim() !== "") {
+        favoriteFood = input;
+        document.getElementById('displayValue').textContent = favoriteFood;
+        document.getElementById('codeDisplay').textContent = 
+          'favoriteFood = "' + favoriteFood + '"';
+        document.getElementById('userInput').value = "";
+      }
+    };
+
+    window.clearValue = function() {
+      favoriteFood = "";
+      document.getElementById('displayValue').textContent = "(empty)";
+      document.getElementById('codeDisplay').textContent = 'favoriteFood = (empty)';
+    };
+    // Allow Enter key
+    document.addEventListener('DOMContentLoaded', () => {
+      const widgetPage = new WidgetPage("understanding-variables", document.body);
+      
+      document.getElementById('userInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') window.storeValue();
+      });
     });
   </script>
 </body>
-
 </html>
